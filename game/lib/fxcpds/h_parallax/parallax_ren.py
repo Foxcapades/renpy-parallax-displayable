@@ -14,7 +14,7 @@ class HParallax(Transform):
 
     def __init__(
         self,
-        *layers: tuple[renpy.Displayable | str, float],
+        *layers: tuple['renpy.Displayable | str', float],
         **kwargs
     ) -> None:
         """
@@ -204,7 +204,7 @@ class _HParallaxContainer(renpy.Displayable):
     def visit(self) -> renpy.Displayable:
         return [ layer.displayable for layer in self._layers ]
 
-    def _validate_layers(self, layers: tuple[tuple[renpy.Displayable | str, float], ...]) -> None:
+    def _validate_layers(self, layers: tuple[tuple['renpy.Displayable | str', float], ...]) -> None:
         if len(layers) < 1:
             raise Exception(
                 'argument "layers" must be a list containing one or more'
@@ -216,7 +216,7 @@ class _HParallaxContainer(renpy.Displayable):
         for i, layer in enumerate(layers):
             self._validate_layer(i, layer)
 
-    def _validate_layer(self, i: int, layer: tuple[renpy.Displayable | str, float]) -> None:
+    def _validate_layer(self, i: int, layer: tuple['renpy.Displayable | str', float]) -> None:
         if not (isinstance(layer, tuple) and len(layer) == 2):
             raise Exception(
                 'argument "layers" value number ' + str(i + 1) + ' was not'
@@ -314,7 +314,7 @@ class _HParallaxLayer:
     """
     def __init__(
         self,
-        displayable: renpy.Displayable | str,
+        displayable: 'renpy.Displayable | str',
         speed: float,
         max_width: int,
         left: bool,
